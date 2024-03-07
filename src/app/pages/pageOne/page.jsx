@@ -1,11 +1,18 @@
-import React from 'react'
+"use client";
+import React from "react";
+import CardPosts from "@/components/cardsPosts/page";
 
 function page() {
   return (
-    <h1 className="m-0 w-full pt-20 leading-tight text-5xl text-center font-bold h-screen">
-        PAGE 1
-      </h1>
-  )
+    <main className="h-dvh p-12 bg-[#fdfff9] ">
+      
+    <div className="flex justify-center h-[32em] ">
+      <div className="max-w-6xl w-full items-center justify-center shadow-lg shadow-red-200 p-3 border border-red-200 rounded-lg overflow-y-auto text-sm">
+        <CardPosts />
+      </div>
+    </div>
+  </main>
+  );
 }
 
-export default page
+export default page;
