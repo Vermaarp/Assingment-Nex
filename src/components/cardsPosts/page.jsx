@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUser, deleteUser } from "@/services/page";
+import { getUser, deleteUser, editUser } from "@/services/page";
 import MyModal from "@/components/modal/page";
 // icons
 import { MdDeleteForever, MdOutlineModeEditOutline } from "react-icons/md";
@@ -8,11 +8,11 @@ function Page() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         const { data } = await getUser();
         setUsers(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -30,9 +30,18 @@ function Page() {
     }
   };
 
-  const [isOpen, setIsOpen] = useState(false); // State for modal visibility
-  const openModal = () => {
+
+
+  const [name, setName] = useState("");
+
+
+
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = async(id) => {
     setIsOpen(true);
+    const user = await editUser(id);
+    setName(user.data.name);
+    console.log(user.data.name);
   };
 
   const closeModal = () => {
@@ -50,7 +59,7 @@ function Page() {
                   <div></div>
                   <span className="flex gap-2">
                     <button className="p-2 bg-blue-500 rounded-lg hover:shadow hover:shadow-[#fdfff9] hover:scale-100 ease-in duration-100">
-                      <MdOutlineModeEditOutline onClick={() => openModal({ id, userId, name, email, address })} />
+                      <MdOutlineModeEditOutline onClick={() => openModal(id)} />
                     </button>
                     <button
                       className="p-2 bg-red-500 rounded-lg hover:shadow hover:shadow-[#fdfff9] hover:scale-105 ease-in duration-100"
@@ -71,7 +80,7 @@ function Page() {
         })}
       </div>
       {/* modal  */}
-      <MyModal isOpen={isOpen} closeModal={closeModal} />
+      <MyModal isOpen={isOpen} closeModal={closeModal} name={name} />
     </>
   );
 }

@@ -21,29 +21,18 @@ export const deleteUser = async (id) => {
     const response = await axios.delete(url);
     return response;
 }
+export const editUser = async (id) => {
+    // const url = `${endPoint}/users/${id}`;
+    const url = `${endPoint}/users/${id}`;
+    const response = await axios.get(url);
+    console.log(response, 'gfdgfdgd');
+    // const response = await axios.put(url);
+    return response;
+}
 
 
 export const AddPost = async () => {
     const url = `${endPoint}/posts`;
     const response = await axios.get(url);
-    return response;
-}
-
-
-export const postApi = async () => {
-    const url = `${endPoint}/posts`;
-    const response = await axios.post(url, payload);
-    return response;
-}
-
-export const putApi = async (payload) => {
-    const url = `${endPoint}/posts/${payload.id}`;
-    const response = await axios.put(url, payload);
-    return response;
-}
-
-export const deletePostApi = async (id) => {
-    const url = `${endPoint}/posts/${id}`;
-    const response = await axios.delete(url);
     return response;
 }

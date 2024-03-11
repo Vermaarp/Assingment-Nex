@@ -1,8 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
-export default function MyModal({ isOpen, closeModal, userData }) {
-  if (!isOpen) return null; // If modal is not open, don't render anything
+export default function MyModal({ isOpen, closeModal, userData,  id, userId, name, email, address  }) {
+  if (!isOpen) return null;
+
+
+
+  const updateHandler = () => {
+    console.log("updated");
+  };
+
+
 
   return (
     <>
@@ -42,20 +50,26 @@ export default function MyModal({ isOpen, closeModal, userData }) {
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <div className="mt-2  flex flex-col space-y-2">
-                  <span className="w-full">
+                  {/* <span className="w-full">
                     User:{" "}
                     <input
                       type="text"
                       className="border rounded-lg ml-1 w-fit"
                     />
-                  </span>
+                  </span> */}
                   <span>
-                    Name:{" "}
-                    <input type="text" className="border rounded-lg ml-1" />
+                    Name:
+                    <input
+                      type="text"
+                  
+                      className="border rounded-lg ml-1"
+                      value={name}
+                    />
                   </span>
+
                   <span>
                     Email:{" "}
-                    <input type="text" className="border rounded-lg ml-1" />
+                    <input type="text" className="border rounded-lg ml-1"  value={email}/>
                   </span>
                   <span>
                     Address:{" "}
@@ -69,6 +83,13 @@ export default function MyModal({ isOpen, closeModal, userData }) {
                     onClick={closeModal}
                   >
                     Close
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none"
+                    onClick={updateHandler}
+                  >
+                    Update
                   </button>
                 </div>
               </div>
